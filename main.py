@@ -5,12 +5,16 @@ import requests
 import json
 
 def main():
-	#capacity = input("What is the gas capacity of your car? ")
-	api = 'http://devapi.mygasfeed.com/'
-	api +=  '/stations/radius/49/150/10/reg/price/rfej9napna.json'
-	my_response = requests.get(api)
-	print(my_response.text)
-
+	price = input("What is the current price? (Enter in dollars, e.g. 3.88)")
+	capacity = input("What is the gas capacity of your car? ")
+	# TODO: Make own database because nobody has free car info api...
+	choice = input("Enter 0 for Cents per Gallon, 1 for Cents per Litre: ")
+	while (choice != '1' or choice != '0'):
+		print("Invalid choice!")
+		choice = input("Enter 0 for Cents per Gallon, 1 for Cents per Litre: ")
+	# Enum 1 to mpg, 0 to litre
+	total_cost = price * capacity
+	print('Total cost will be: ' + str(total_cost) + ' to fill up.')
 
 if __name__ == "__main__":
 	main()
